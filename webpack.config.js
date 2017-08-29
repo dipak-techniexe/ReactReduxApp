@@ -10,7 +10,10 @@ module.exports = {
     },
     watch: true,
     module: {
-        loaders: [{
+        rules: [
+        //{ enforce: "pre", test: /\.js$/, loader: "eslint", exclude: /node_modules/ },
+        { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+        {
             test:/\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
