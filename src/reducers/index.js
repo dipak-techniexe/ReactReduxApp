@@ -1,4 +1,4 @@
-"use strict"
+'use strict';
 import {combineReducers} from 'redux';
 
 // HERE IMPORT REDUCERS TO BE COMBINED
@@ -7,6 +7,6 @@ import {cartReducers} from './cartReducers';
 
 // HERE COMBINE THE REDUCES
 export default combineReducers({
-    books: booksReducers,
-    cart: cartReducers
-})
+  books: booksReducers,
+  cart: cartReducers
+});
