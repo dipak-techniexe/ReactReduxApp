@@ -2,22 +2,12 @@
 // STEP 3 define reducers
 // BOOKS REDUCERS
 export function booksReducers(state = {
-  books: [{
-    _id: 1,
-    title: 'this is the book title',
-    description: 'this is the book description',
-    price: 44.33
-  }, {
-    _id: 2,
-    title: 'this is the second book title',
-    description: 'this is the second book description',
-    price: 55
-  }]
+  books: []
 }, action) {
   switch (action.type) {
   // GET BOOK METHOD
   case 'GET_BOOKS':
-    return { ...state, books: [...state.books] };
+    return { ...state, books: [...action.payload] };
     break;
 
     // POST BOOK METHOD
