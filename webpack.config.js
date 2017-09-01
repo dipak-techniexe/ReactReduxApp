@@ -39,14 +39,14 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new UglifyJSPlugin(),
+    //new UglifyJSPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
     })
   ],
-  performance: {
-    hints: false
-  }
+  // performance: {
+  //   hints: false
+  // }
 };

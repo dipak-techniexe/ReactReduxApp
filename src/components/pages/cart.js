@@ -3,9 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Panel, Col, Row, Button, ButtonGroup, Label } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
-import { deleteCartItem, addToCart, updateCart } from '../../actions/cartActions';
+import { deleteCartItem, addToCart, updateCart, getCart } from '../../actions/cartActions';
 
 class Cart extends React.Component {
+  componentDidMount(){
+    this.props.getCart();
+  }
   onDelete(_id) {
     // Create a copy of the current array of books
     const currentBookToDelete = this.props.cart;
@@ -22,11 +25,11 @@ class Cart extends React.Component {
   }
 
   onIncrement(_id) {
-    this.props.updateCart(_id, 1);
+    this.props.updateCart(_id, 1, this.props.cart);
   }
   onDecrement(_id, quantity) {
     if (quantity > 1) {
-      this.props.updateCart(_id, -1);
+      this.props.updateCart(_id, -1, this.props.cart);
     }
   }
   constructor() {
@@ -118,7 +121,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     deleteCartItem,
     addToCart,
-    updateCart
+    updateCart,
+    getCart
   }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

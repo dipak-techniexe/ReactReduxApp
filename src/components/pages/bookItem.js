@@ -26,7 +26,7 @@ class BookItem extends React.Component {
         this.props.addToCart(book);
       } else {
         // we need to update quantity
-        this.props.updateCart(_id, 1);
+        this.props.updateCart(_id, 1, this.props.cart);
       }
     } else {
       // Cart Is Empty
