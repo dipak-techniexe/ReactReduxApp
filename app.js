@@ -2,20 +2,23 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 
-var app = express();
-
 // PROXY
 var httpProxy = require('http-proxy');
+
+var index = require('./routes/index');
+var users = require('./routes/users');
+
+var app = express();
 
 // PROXY TO API
 const apiProxy = httpProxy.createProxyServer({
   target:'http://localhost:3001'
 });
-
-app.use('/api',function(req, res){
+app.use('/api', function(req, res){
   apiProxy.web(req, res);
 });
-// End Proxy
+
+
 
 var compression = require('compression');
 app.use(compression({filter: shouldCompress}));
@@ -36,8 +39,10 @@ function shouldCompress (req, res) {
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
 
 app.get('*', function(req, res){
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));

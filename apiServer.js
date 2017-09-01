@@ -1,6 +1,7 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var logger = require('morgan');
 
 
 var app = express();
@@ -23,10 +24,10 @@ function shouldCompress (req, res) {
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 
 // APIs
 var mongoose = require('mongoose');
@@ -99,7 +100,5 @@ app.listen(3001, function(err){
   if(err){
     return console.log(err);
   }
-  console.log('API Server is listening on http://localhost:3001');
+  console.log('API Server listening on http://localhost:3001');
 });
-
-module.exports = app;
